@@ -75,7 +75,9 @@ const leadingsText = computed(() => [
           </div>
         </div>
         <div class="md:flex md:w-3/8 justify-center items-end relative">
-          <Logo class="absolute -top-64 -right-0 text-white" />
+          <Logo
+            class="absolute top-8 md:-top-64 -right-48 md:-right-0 text-white"
+          />
         </div>
       </PageSection>
     </PageBody>
