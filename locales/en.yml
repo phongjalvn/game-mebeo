@@ -1,0 +1,60 @@
+components:
+  language_switcher:
+    change_language: change language
+  theme_switcher:
+    theme: theme
+    change_theme: change theme
+pages:
+  index:
+    title: Lets[]draw[]something
+  404:
+    title: page not found
+  play:
+    nav: play
+    title: Play
+    description: Play
+    just_blank_page_with_title: just blank page with title
+  post:
+    nav: post
+    title: post
+    description: this is a post page
+  ranking:
+    nav: ranking
+    title: ranking
+    description: ranking
+  rules:
+    nav: Rules
+    title: Rules
+    description: How to play
+  setting:
+    nav: setting
+    title: setting
+    description: this is a setting page
+    sections:
+      validate_username:
+        title: validate github profile
+        description: type your github username and click the button to validate.
+        footer: Learn more about
+        footer_button: validate
+        footer_link: github users api
+      bot_id:
+        title: bot id
+        description: This is your bot ID.
+        footer: Used when interacting with the bot.
+      protection_spam:
+        title: spam protection
+        description: toggle enable to remove the red border
+        footer: if enable we will secure your comments from spam
+      advanced_enable_advanced:
+        title: enable advanced settings
+        description: you can enable advanced settings to change the settings
+      advanced_dir_listing:
+        title: directory listing
+        description: if no index file is present within a directory, the directory contents will be displayed.
+banners:
+  welcome: hello, welcome to %{app_name}!
+others:
+  learn_more: learn more
+  copy: copy
+  enabled: enabled
+  disabled: disabled
