@@ -56,7 +56,11 @@ const score = ref(0)
 const gameTimer = ref<ReturnType<typeof setTimeout> | null>(null)
 const submitTimer = ref<ReturnType<typeof setTimeout> | null>(null)
 const userName = ref('')
+const hasUserName = ref(false)
 const showSuccessModal = ref(false)
+const startTime = ref(0)
+const endTime = ref(0)
+const timeTaken = computed(() => endTime.value - startTime.value)
 
 // Game canvas refs
 const loadingModelOver = ref(false)
@@ -210,6 +214,8 @@ const startGame = (mode: any) => {
   score.value = 0
   imagesData.value = []
   showSuccessModal.value = false
+  startTime.value = Date.now()
+  endTime.value = 0
   randomQuestion()
 }
 
@@ -229,6 +235,8 @@ const nextGame = () => {
     randomQuestion()
   } else {
     step.value = 2
+    playing.value = false
+    endTime.value = Date.now()
   }
 }
 
@@ -343,6 +351,14 @@ const getImageDataUrl = () => {
   }
 }
 
+const checkUserName = () => {
+  if (userName.value) {
+    hasUserName.value = true
+  } else {
+    alert('Please enter your name')
+  }
+}
+
 onMounted(() => {
   loadingModelOver.value = false
 
@@ -420,6 +436,7 @@ const submitGameToServer = async () => {
     imagesData: imagesData.value,
     userName: userName.value,
     mode: difficulty.value,
+    time: timeTaken.value,
   }
   loadingModelOver.value = false
   const { data: submitResult } = await useFetch('/api/saveGame', {
@@ -452,17 +469,36 @@ const submitGameToServer = async () => {
         v-if="step === 0"
         class="absolute bg-blue-300 inset-0 flex flex-col justify-center items-center"
       >
-        <span>Start game in</span>
-        <Button
-          class="my-10"
-          size="xl"
-          type="secondary"
-          @click="startGame('easy')"
-          >Easy mode ({{ getLengthNames('easy') }})</Button
-        >
-        <Button size="xl" @click="startGame('easy')"
-          >Hard mode ({{ getLengthNames('hard') }})</Button
-        >
+        <div v-if="!hasUserName" class="mb-6 text-2xl min-w-80">
+          <label
+            for="name"
+            class="block mb-2 font-medium text-gray-900 dark:text-white"
+            >Your name</label
+          >
+          <input
+            id="name"
+            v-model="userName"
+            type="text"
+            class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Please enter your name"
+            required
+            @keypress.enter="checkUserName"
+          />
+          <Button class="my-4" size="xl" @click="checkUserName">OK</Button>
+        </div>
+        <template v-else>
+          <span>Start game in</span>
+          <Button
+            class="my-10"
+            size="xl"
+            type="secondary"
+            @click="startGame('easy')"
+            >Easy mode ({{ getLengthNames('easy') }})</Button
+          >
+          <Button size="xl" @click="startGame('easy')"
+            >Hard mode ({{ getLengthNames('hard') }})</Button
+          >
+        </template>
       </div>
     </Transition>
     <Transition name="slide-fade">
@@ -525,21 +561,6 @@ const submitGameToServer = async () => {
               <icon-mdi:close v-else class="text-red-700" />
             </div>
           </div>
-        </div>
-        <div class="mb-6 text-2xl min-w-80">
-          <label
-            for="name"
-            class="block mb-2 font-medium text-gray-900 dark:text-white"
-            >Your name</label
-          >
-          <input
-            id="name"
-            v-model="userName"
-            type="text"
-            class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Please enter your name"
-            required
-          />
         </div>
         <Button size="lg" class="my-8" @click="submitGameToServer">
           Submit <icon-mdi:loading v-if="!loadingModelOver" class="ml-2" />

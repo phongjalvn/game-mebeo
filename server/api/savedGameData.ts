@@ -6,6 +6,7 @@ export default defineEventHandler(async () => {
     .select()
     .eq('mode', 'easy')
     .order('score', { ascending: false })
+    .order('time', { ascending: true })
     .limit(10)
 
   const { data: hardPlayersData, error: hardError } = await supabase
@@ -13,6 +14,7 @@ export default defineEventHandler(async () => {
     .select()
     .eq('mode', 'hard')
     .order('score', { ascending: false })
+    .order('time', { ascending: true })
     .limit(10)
 
   if (easyPlayersData && hardPlayersData) {

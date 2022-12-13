@@ -40,6 +40,7 @@ export interface Database {
           score: number | null
           imagesData: Json | null
           mode: string
+          time: number | null
         }
         Insert: {
           id?: number
@@ -48,6 +49,7 @@ export interface Database {
           score?: number | null
           imagesData?: Json | null
           mode: string
+          time?: number | null
         }
         Update: {
           id?: number
@@ -56,6 +58,7 @@ export interface Database {
           score?: number | null
           imagesData?: Json | null
           mode?: string
+          time?: number | null
         }
       }
     }
