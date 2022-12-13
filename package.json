@@ -67,6 +67,7 @@
     "@types/fabric": "^4.5.14",
     "base64-arraybuffer": "^1.0.2",
     "d3": "5.16.0",
-    "fabric-pure-browser": "^5.1.0"
+    "fabric-pure-browser": "^5.1.0",
+    "nuxt3": "3.0.1-rc.0-27847650.5afcaca"
   }
 }
