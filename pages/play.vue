@@ -10,7 +10,6 @@ const { t } = useLang()
 const { $fabric, $TFModel, $disposeTFVariables } = useNuxtApp()
 
 const { data: config } = await useFetch('/api/config')
-const { data: playersData } = await useFetch('/api/savedGameData')
 
 // console.log(config, playersData)
 
