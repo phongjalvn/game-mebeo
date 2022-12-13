@@ -556,7 +556,7 @@ const submitGameToServer = async () => {
     <Transition name="slide-fade">
       <div
         v-if="step === 2"
-        class="absolute inset-0 flex flex-col justify-center items-center bg-green-400 z-10"
+        class="absolute inset-0 flex flex-col justify-center items-center bg-green-100 z-10"
       >
         <div class="my-8">
           Your score: <strong class="text-red-700">{{ score }}</strong>
