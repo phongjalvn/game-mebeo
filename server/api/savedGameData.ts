@@ -19,12 +19,14 @@ export default defineEventHandler(async () => {
 
   if (easyPlayersData && hardPlayersData) {
     return {
+      statusCode: 200,
       success: true,
       easyPlayersData,
       hardPlayersData,
     }
   } else {
     return {
+      statusCode: 400,
       success: false,
       message: easyError?.message || hardError?.message,
     }

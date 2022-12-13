@@ -40,12 +40,14 @@ export default defineEventHandler(async (event) => {
 
   if (!error) {
     return {
+      statusCode: 200,
       success: true,
       message: 'Saved game data',
     }
   }
 
   return {
+    statusCode: 400,
     success: false,
     message: error.message,
   }

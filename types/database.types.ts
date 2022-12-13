@@ -16,6 +16,7 @@ export interface Database {
           time: number | null
           maxGame: number | null
           detectionThreshold: number | null
+          brushWidth: number | null
         }
         Insert: {
           id?: number
@@ -23,6 +24,7 @@ export interface Database {
           time?: number | null
           maxGame?: number | null
           detectionThreshold?: number | null
+          brushWidth?: number | null
         }
         Update: {
           id?: number
@@ -30,6 +32,7 @@ export interface Database {
           time?: number | null
           maxGame?: number | null
           detectionThreshold?: number | null
+          brushWidth?: number | null
         }
       }
       playersData: {

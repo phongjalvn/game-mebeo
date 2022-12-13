@@ -3,6 +3,9 @@ import { SMALL_CLASS_NAMES, BIG_CLASS_NAMES } from '../utils/class_names'
 import { IPointer, IScore } from '@/types/common'
 import { capitalize } from '~/utils/str'
 import { TFModel } from '~~/utils/model'
+import { Size } from '~/composables/useScreen'
+
+const screen = useScreen()
 
 // composable
 const { t } = useLang()
@@ -69,7 +72,12 @@ const mousePressed = ref(false)
 const coords = ref<IPointer[]>([])
 // const smallRanking = ref([])
 // const bigRanking = ref([])
-const brushWidth = ref(20)
+const configBrushWidth = config?.value?.data?.brushWidth || 20
+const brushWidth = computed(() => {
+  return screen.higherThan(Size.MEDIUM)
+    ? configBrushWidth
+    : configBrushWidth / 20
+})
 const imagesData = ref<IScore[]>([])
 
 // Voice
