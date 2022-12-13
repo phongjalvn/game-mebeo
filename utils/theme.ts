@@ -22,10 +22,10 @@ export function ThemeManager() {
   const getSystemTheme = (): ITheme => {
     try {
       return window
-        ? window.matchMedia('(prefers-color-scheme: dark)').matches
-          ? 'dark'
-          : 'light'
-        : 'dark'
+        ? window.matchMedia('(prefers-color-scheme: light)').matches
+          ? 'light'
+          : 'dark'
+        : 'light'
     } catch (error) {
       return 'dark'
     }
@@ -79,13 +79,13 @@ export function ThemeManager() {
   onBeforeMount(() => init())
   onMounted(() => {
     window
-      .matchMedia('(prefers-color-scheme: dark)')
+      .matchMedia('(prefers-color-scheme: light)')
       .addEventListener('change', onThemeSystemChange)
     intervalCheckTime = setInterval(onRealtimeCheck, 1000)
   })
   onBeforeUnmount(() => {
     window
-      .matchMedia('(prefers-color-scheme: dark)')
+      .matchMedia('(prefers-color-scheme: light)')
       .removeEventListener('change', onThemeSystemChange)
     if (intervalCheckTime) clearInterval(intervalCheckTime)
   })

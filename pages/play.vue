@@ -76,7 +76,7 @@ const configBrushWidth = config?.value?.data?.brushWidth || 20
 const brushWidth = computed(() => {
   return screen.higherThan(Size.MEDIUM)
     ? configBrushWidth
-    : configBrushWidth / 20
+    : configBrushWidth / 2
 })
 const imagesData = ref<IScore[]>([])
 
@@ -139,14 +139,20 @@ const getTopClassNames = computed(() => {
   const outp = []
   const indices = findIndicesOfMax.value
   for (let i = 0; i < indices.length; i++) {
-    if (rawPredictions.value[indices[i]] > detectionThreshold)
+    if (rawPredictions.value[indices[i]] > detectionThreshold / 3)
       outp[i] = getClassNames.value[indices[i]]
   }
   return outp
 })
 
 const getTopClassName = computed(() => {
-  return getTopClassNames.value.find((item) => item === currentDrawClass.value)
+  const outp = []
+  const indices = findIndicesOfMax.value
+  for (let i = 0; i < indices.length; i++) {
+    if (rawPredictions.value[indices[i]] > detectionThreshold)
+      outp[i] = getClassNames.value[indices[i]]
+  }
+  return outp.find((item) => item === currentDrawClass.value)
 })
 
 const getClassNames = computed(() => {
@@ -197,7 +203,7 @@ const initCanvas = () => {
     })
     if (!canvas) return
     canvas.backgroundColor = '#FFFFFF'
-    canvas.freeDrawingBrush.width = 20
+    canvas.freeDrawingBrush.width = brushWidth.value
     canvas.renderAll()
     canvas.on('mouse:down', () => {
       mousePressed.value = true
