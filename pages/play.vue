@@ -159,6 +159,7 @@ const getLengthNames = (mode: string) => {
 
 const randomQuestion = () => {
   // random class name from classNames
+
   currentDrawClass.value =
     getClassNames.value[Math.floor(Math.random() * getClassNames.value.length)]
   timeRemaining.value = time
@@ -495,7 +496,7 @@ const submitGameToServer = async () => {
             @click="startGame('easy')"
             >Easy mode ({{ getLengthNames('easy') }})</Button
           >
-          <Button size="xl" @click="startGame('easy')"
+          <Button size="xl" @click="startGame('hard')"
             >Hard mode ({{ getLengthNames('hard') }})</Button
           >
         </template>
