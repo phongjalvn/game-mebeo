@@ -3,9 +3,6 @@ import { SMALL_CLASS_NAMES, BIG_CLASS_NAMES } from '../utils/class_names'
 import { IPointer, IScore } from '@/types/common'
 import { capitalize } from '~/utils/str'
 import { TFModel } from '~~/utils/model'
-import { Size } from '~/composables/useScreen'
-
-const screen = useScreen()
 
 // composable
 const { t } = useLang()
