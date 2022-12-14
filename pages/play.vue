@@ -209,7 +209,9 @@ const initCanvas = () => {
       mousePressed.value = true
     })
     canvas.on('mouse:up', () => {
-      submitCanvas()
+      setTimeout(() => {
+        submitCanvas()
+      }, 50)
       mousePressed.value = false
     })
     // @ts-ignore
@@ -342,6 +344,7 @@ const getImageData = () => {
       (mbb.max.x - mbb.min.x) * dpi,
       (mbb.max.y - mbb.min.y) * dpi
     )
+
     return imgData
   } catch (error) {
     return false
