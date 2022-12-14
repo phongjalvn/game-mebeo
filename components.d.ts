@@ -20,6 +20,8 @@ declare module '@vue/runtime-core' {
     'IconMdi:checkCircle': typeof import('~icons/mdi/check-circle')['default']
     'IconMdi:chevronDoubleRight': typeof import('~icons/mdi/chevron-double-right')['default']
     'IconMdi:close': typeof import('~icons/mdi/close')['default']
+    'IconMdi:closeBox': typeof import('~icons/mdi/close-box')['default']
+    'IconMdi:closeCircle': typeof import('~icons/mdi/close-circle')['default']
     'IconMdi:delete': typeof import('~icons/mdi/delete')['default']
     'IconMdi:eraser': typeof import('~icons/mdi/eraser')['default']
     'IconMdi:githubFace': typeof import('~icons/mdi/github-face')['default']

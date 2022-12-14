@@ -73,11 +73,8 @@ const coords = ref<IPointer[]>([])
 // const smallRanking = ref([])
 // const bigRanking = ref([])
 const configBrushWidth = config?.value?.data?.brushWidth || 20
-const brushWidth = computed(() => {
-  return screen.higherThan(Size.MEDIUM)
-    ? configBrushWidth
-    : configBrushWidth / 2
-})
+
+const brushWidth = ref(configBrushWidth)
 const imagesData = ref<IScore[]>([])
 
 // Voice
@@ -203,6 +200,9 @@ const initCanvas = () => {
     })
     if (!canvas) return
     canvas.backgroundColor = '#FFFFFF'
+    window.screen.width > 768
+      ? (brushWidth.value = configBrushWidth)
+      : (brushWidth.value = configBrushWidth / 2)
     canvas.freeDrawingBrush.width = brushWidth.value
     canvas.renderAll()
     canvas.on('mouse:down', () => {
@@ -564,19 +564,42 @@ const submitGameToServer = async () => {
         <div class="my-8">
           Your score: <strong class="text-red-700">{{ score }}</strong>
         </div>
-        <div
-          class="grid grid-cols-1 md:grid-cols-3 text-center overflow-auto flex-1"
-        >
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 p-4">
           <div
-            v-for="(image, index) in imagesData"
-            :key="index"
-            class="flex flex-col justify-center items-center"
+            v-for="(imageData, imageindex) in imagesData"
+            :key="imageindex"
+            class="hover:animate-zoom-in shadow-lg rounded-lg relative overflow-hidden bg-no-repeat bg-cover flex justify-center items-center aspect-square cursor-pointer bg-white p-4"
+            style="background-position: 50%"
+            @click="
+              () => {
+                isOpen = true
+                currentImage = imageData.imgData
+                currentImageClass = imageData.class
+              }
+            "
           >
-            <img :src="image.imgData" class="w-1/2 mx-auto my-4" />
-            <div class="text-xl flex justify-center items-center">
-              {{ image.class }}
-              <icon-mdi:check v-if="image.isWin" class="text-green-700" />
-              <icon-mdi:close v-else class="text-red-700" />
+            <img
+              :src="imageData.imgData"
+              class="max-h-48 max-w-48 transition duration-300 ease-linear align-middle my-4"
+            />
+            <div
+              class="absolute top-0 right-0 bottom-0 left-0 w-full h-full overflow-hidden bg-fixed"
+            >
+              <div class="flex justify-start items-end h-full">
+                <h5
+                  class="text-lg font-bold text-green-500/75 m-2 flex justify-between items-center"
+                  :class="
+                    imageData.isWin ? 'text-green-500/75' : 'text-red-500/75'
+                  "
+                >
+                  <icon-mdi:check-circle
+                    v-if="imageData.isWin"
+                    class="text-green-500/75"
+                  />
+                  <icon-mdi:close-circle v-else class="text-red-500/75" />
+                  <span class="ml-2">{{ imageData.class }}</span>
+                </h5>
+              </div>
             </div>
           </div>
         </div>
@@ -632,10 +655,7 @@ const submitGameToServer = async () => {
                   <icon-mdi:check-circle class="text-green-600" />
                 </div>
                 <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                  <h3
-                    id="modal-title"
-                    class="text-lg font-medium leading-6 text-gray-900"
-                  >
+                  <h3 class="text-lg font-medium leading-6 text-gray-900">
                     Thank you for playing
                   </h3>
                   <div class="mt-2">
