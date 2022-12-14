@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import Logo from '@/assets/images/logo.svg'
 // composable
 const { t } = useLang()
 
@@ -47,7 +46,7 @@ const leadingsText = computed(() => [
       <div class="absolute bottom-0 right-0 triangle-shape"></div>
     </div>
     <PageBody class="flex-1 flex">
-      <PageSection class="flex-1 flex items-center">
+      <PageSection class="flex-1 md:flex items-center">
         <div class="flex-1 md:w-5/8 flex flex-col z-10">
           <h1 class="text-center md:text-left mt-4">
             <span
@@ -64,7 +63,7 @@ const leadingsText = computed(() => [
             </span>
           </h1>
           <div
-            class="flex space-x-4 ml-4 mt-10 justify-center md:justify-start"
+            class="flex space-x-4 md:ml-4 mt-10 justify-center md:justify-start"
           >
             <Button
               size="lg"
@@ -74,9 +73,12 @@ const leadingsText = computed(() => [
             />
           </div>
         </div>
-        <div class="hidden md:flex md:w-3/8 justify-center items-end relative">
-          <Logo
-            class="absolute top-8 md:-top-64 -right-48 md:-right-0 text-white"
+        <div
+          class="flex w-2/3 mt-8 md:mt-0 mx-auto md:w-3/8 justify-center items-end relative"
+        >
+          <img
+            src="@/assets/images/logo-01.png"
+            class="md:absolute top-8 md:-top-64 right-48 md:-right-0 text-white"
           />
         </div>
       </PageSection>
