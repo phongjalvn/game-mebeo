@@ -519,7 +519,7 @@ const submitGameToServer = async () => {
     <Transition name="slide-fade">
       <div
         v-if="step === 1"
-        class="absolute bg-yellow-300 flex flex-col justify-center items-center transition-all duration-500 ease-in-out text-center"
+        class="absolute bg-yellow-100 flex flex-col justify-center items-center transition-all duration-500 ease-in-out text-center"
         :class="playing ? 'inset-x-0 top-0 h-20 md:h-1/20' : 'inset-0 h-full'"
       >
         <template v-if="!playing">
