@@ -62,10 +62,10 @@ function closeModal() {
       <PageSection>
         <PageSectionTitle text="Easy" class="capitalize" />
         <div class="flex justify-between my-4 font-bold px-4">
-          <div class="w-20">Rank</div>
-          <div class="w-20 text-center">Score</div>
-          <div class="w-40 text-center">Time</div>
-          <div class="w-1/2 flex-1">Name</div>
+          <div class="w-10 md:w-20">Rank</div>
+          <div class="w-10 md:w-20 text-center">Score</div>
+          <div class="w-20 md:w-40 text-center">Time</div>
+          <div class="w-auto md:w-1/2 flex-1">Name</div>
         </div>
         <div
           v-for="(player, index) in playersData.easyPlayersData"
@@ -75,12 +75,14 @@ function closeModal() {
           <Disclosure>
             <DisclosureButton
               as="div"
-              class="flex justify-between items-center font-bold py-6 px-4 bg-gradient-to-r from-green-500 to-blue-500 text-white text-2xl shadow-md cursor-pointer"
+              class="flex justify-between items-start font-bold py-6 px-4 bg-gradient-to-r from-green-500 to-blue-500 text-white text-2xl shadow-md cursor-pointer"
             >
-              <div class="w-20">{{ index + 1 }}</div>
-              <div class="w-20 text-center">{{ player.score }}</div>
-              <div class="w-40 text-center">{{ formatTime(player.time) }}</div>
-              <div class="w-1/2 flex-1">{{ player.userName }}</div>
+              <div class="w-10 md:w-20">{{ index + 1 }}</div>
+              <div class="w-10 md:w-20 text-center">{{ player.score }}</div>
+              <div class="w-24 md:w-40 text-center">
+                {{ formatTime(player.time) }}
+              </div>
+              <div class="w-auto md:w-1/2 flex-1">{{ player.userName }}</div>
             </DisclosureButton>
             <transition
               enter-active-class="transition duration-100 ease-out"
@@ -140,10 +142,10 @@ function closeModal() {
       <PageSection>
         <PageSectionTitle text="Hard" class="capitalize" />
         <div class="flex justify-between my-4 font-bold px-4">
-          <div class="w-20">Rank</div>
-          <div class="w-20 text-center">Score</div>
-          <div class="w-40 text-center">Time</div>
-          <div class="w-1/2 flex-1">Name</div>
+          <div class="w-10 md:w-20">Rank</div>
+          <div class="w-10 md:w-20 text-center">Score</div>
+          <div class="w-20 md:w-40 text-center">Time</div>
+          <div class="w-auto md:w-1/2 flex-1">Name</div>
         </div>
         <div
           v-for="(player, index) in playersData.hardPlayersData"
@@ -153,12 +155,14 @@ function closeModal() {
           <Disclosure>
             <DisclosureButton
               as="div"
-              class="flex justify-between items-center font-bold py-6 px-4 bg-gradient-to-r from-green-500 to-blue-500 text-white text-2xl shadow-md cursor-pointer"
+              class="flex justify-between items-start font-bold py-6 px-4 bg-gradient-to-r from-green-500 to-blue-500 text-white text-2xl shadow-md cursor-pointer"
             >
-              <div class="w-20">{{ index + 1 }}</div>
-              <div class="w-20 text-center">{{ player.score }}</div>
-              <div class="w-40 text-center">{{ formatTime(player.time) }}</div>
-              <div class="w-1/2 flex-1">{{ player.userName }}</div>
+              <div class="w-10 md:w-20">{{ index + 1 }}</div>
+              <div class="w-10 md:w-20 text-center">{{ player.score }}</div>
+              <div class="w-24 md:w-40 text-center">
+                {{ formatTime(player.time) }}
+              </div>
+              <div class="w-auto md:w-1/2 flex-1">{{ player.userName }}</div>
             </DisclosureButton>
             <transition
               enter-active-class="transition duration-100 ease-out"
@@ -257,7 +261,7 @@ function closeModal() {
                 </DialogTitle>
                 <div class="mt-2">
                   <div
-                    class="text-sm text-gray-500 h-[70vh] aspect-square flex justify-center items-center"
+                    class="text-sm text-gray-500 w-80vw md:w-40vw max-h-[70vh] aspect-square flex justify-center items-center"
                   >
                     <img
                       :src="currentImage"
